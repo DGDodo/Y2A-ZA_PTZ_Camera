@@ -45,7 +45,9 @@ mount --bind /media/hack/hosts.new /etc/hosts
 (/home/busybox/tcpsvd -E 0.0.0.0 21 /home/busybox/ftpd -w / ) &
 
 # sync the time
-(sleep 20 && /home/busybox/ntpd -q -p 0.uk.pool.ntp.org ) &
+#(sleep 20 && /home/busybox/ntpd -q -p 0.uk.pool.ntp.org ) &
+# DG adjusted to own time server
+(sleep 20 && /home/busybox/ntpd -q -p 192.168.117.1 ) &
 
 # silence the voices - uncomment if needed
 #if [ ! -f /home/VOICE-orig.tgz ]; then
