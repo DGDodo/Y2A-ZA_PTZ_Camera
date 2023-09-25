@@ -35,6 +35,8 @@ body {
 <br />
 <button onclick="window.location.href='webui?command=iroff'" id="irledsoff">IR LEDs Off</button>
 <br />
+<button onclick="window.location.href='webui?command=irauto'" id="irledsauto">IR LEDs Auto</button>
+<br />
 <br />
 
 </div>
@@ -65,6 +67,8 @@ Uptime - $uptime
 Hack Type - $hacktype
 <br />
 <a href="https://github.com/ant-thomas/zsgx1hacks" target="_blank">ZS-GX1 Hacks - Github</a>
+<br />
+Adjusted for chinese Y2A-ZA cameras by DG.
 
 </body></html>
 EOT
@@ -75,12 +79,21 @@ elif [ -f /home/HACKSD ]; then
 ptzfolder="/media/hack"
 fi
 
-
+# Rewrote the following lines for chinese Y2A-ZA Camera:
+# if [ "$command" = "iron" ]; then
+#  gio -s 46 1 > /dev/null
+# fi
+# if [ "$command" = "iroff" ]; then
+#  gio -s 46 0 > /dev/null
+# fi
  if [ "$command" = "iron" ]; then
-  gio -s 46 1 > /dev/null
+  gio -s 39 1 >/dev/null && gio -s 44 0 > /dev/null
  fi
  if [ "$command" = "iroff" ]; then
-  gio -s 46 0 > /dev/null
+  gio -s 39 0 >/dev/null && gio -s 44 1 > /dev/null
+ fi
+ if [ "$command" = "irauto" ]; then
+  gio -s 39 0 >/dev/null && gio -s 44 0 > /dev/null
  fi
  if [ "$command" = "ptzu" ]; then
   $ptzfolder/ptz-ctrl u > /dev/null
@@ -94,15 +107,16 @@ fi
  if [ "$command" = "ptzr" ]; then
   $ptzfolder/ptz-ctrl r > /dev/null
  fi
- if [ "$command" = "ptzlu" ]; then                                                           
-  $ptzfolder/ptz-ctrl lu > /dev/null                                                         
- fi 
- if [ "$command" = "ptzld" ]; then                                                           
-  $ptzfolder/ptz-ctrl ld > /dev/null                                                         
- fi 
- if [ "$command" = "ptzru" ]; then                                                           
-  $ptzfolder/ptz-ctrl ru > /dev/null                                                         
- fi 
- if [ "$command" = "ptzrd" ]; then                                                           
-  $ptzfolder/ptz-ctrl rd > /dev/null                                                         
- fi 
+# These last lines do not work with Y2A-ZA cameras (yet)
+#if [ "$command" = "ptzlu" ]; then                                                           
+#  $ptzfolder/ptz-ctrl lu > /dev/null                                                         
+# fi 
+# if [ "$command" = "ptzld" ]; then                                                           
+#  $ptzfolder/ptz-ctrl ld > /dev/null                                                         
+# fi 
+# if [ "$command" = "ptzru" ]; then                                                           
+#  $ptzfolder/ptz-ctrl ru > /dev/null                                                         
+# fi 
+# if [ "$command" = "ptzrd" ]; then                                                           
+#  $ptzfolder/ptz-ctrl rd > /dev/null                                                         
+# fi 
