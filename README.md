@@ -81,6 +81,8 @@ You should also be able to find the firmware version by logging in via telnet an
   * Annoying whining noise reduced (RW version only currently)
   * WebUI accessible - http://IPAddress:8080/cgi-bin/webui
  
+  
+ 
     (DG) Wondering why the IP address is not printed on the webpage, as it does work fine on CLI ?
   * FTP Server pointing to the root file system - no username or password
 
